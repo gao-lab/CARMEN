@@ -1,11 +1,7 @@
 #!/usr/bin/python  
 #-*- coding:utf-8 -*-  
 ############################  
-#File Name: 02_OHfeature_annotation.py
-#Author: ShiFY
-#Mail: shify@mail.cbi.pku.edu.cn  
-#Created Time: 2017-05-16 16:51:37
-############################  
+
 """
 This script is used to caluclate the OH feature, fasta file is also from 04_coor2fasta.R 
 """

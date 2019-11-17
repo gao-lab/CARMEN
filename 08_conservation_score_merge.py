@@ -1,11 +1,7 @@
 #!/usr/bin/python  
 #-*- coding:utf-8 -*-  
 ############################  
-#File Name: 08_conservation_score_merge.py
-#Author: ShiFY
-#Mail: shify@mail.cbi.pku.edu.cn  
-#Created Time: 2017-05-22 14:07:20
-############################  
+
 import sys
 import re
 import numpy as np

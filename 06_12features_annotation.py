@@ -1,11 +1,7 @@
 #!/usr/bin/python  
 #-*- coding:utf-8 -*-  
 ############################  
-#File Name: 01_12features_annotation.py
-#Author: ShiFY
-#Mail: shify@mail.cbi.pku.edu.cn  
-#Created Time: 2017-05-16 14:09:12
-############################  
+
 """
 This script is used to calculate the 12 PC features from sequence, fasta file is from 04_coor2fasta.R 
 """
