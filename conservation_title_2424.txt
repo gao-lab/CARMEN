@@ -1,0 +1,1 @@
+phastCons100way	phastCons46wayPlacental	phastCons46wayPrimates	phastCons46way	phyloP100way	phyloP46wayAll	phyloP46wayPlacental	phyloP46wayPrimates

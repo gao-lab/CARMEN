@@ -1,0 +1,1 @@
+Chr	Pos	rs_id	Ref	Alt	Comment	Ref_seq	Alt_seq
