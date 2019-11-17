@@ -1,11 +1,6 @@
 #!/bin/bash  
 #-*- coding:utf-8 -*-  
 ############################  
-#File Name: Conservation.sh
-#Author: ShiFY
-#Mail: shify@mail.cbi.pku.edu.cn  
-#Created Time: 2018-05-30 13:29:28
-############################  
 
 bed_file=$1
 
