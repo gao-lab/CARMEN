@@ -22,13 +22,13 @@ if anno_type == "all":
 			continue
 
 if anno_type == "basic":
-    for line in f:
-        eline = line.strip()
-        line_list = eline.split('\t')
-        if len(line_list) == 1400:
-            final_list.append(line_list)
-        else:
-            continue
+	for line in f:
+		eline = line.strip()
+		line_list = eline.split('\t')
+		if len(line_list) == 1400:
+			final_list.append(line_list)
+		else:
+			continue
 
 f.close()
 

@@ -4,7 +4,7 @@
 #Reference version "GRCh37" or "GRCh38".
 #Annotation version "all" or "basic".
 #Option "all" : make annotations with 2424 features.
-#Option "basic" : make annotations with 1384 features. 
+#Option "basic" : make annotations with 1393 features. 
 
 start=$(date +%s)
 
