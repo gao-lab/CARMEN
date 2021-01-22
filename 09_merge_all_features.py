@@ -7,17 +7,29 @@ import sys
 #=================================Training file with label===========================
 
 datafile = sys.argv[1]
+anno_type = sys.argv[4]
 
 f = open(datafile,'r')
 final_list = []
 
-for line in f:
-    eline = line.strip()
-    line_list = eline.split('\t')
-    if len(line_list) == 2431:
-        final_list.append(line_list)
-    else:
-        continue
+if anno_type == "all":
+	for line in f:
+		eline = line.strip()
+		line_list = eline.split('\t')
+		if len(line_list) == 2431:
+			final_list.append(line_list)
+		else:
+			continue
+
+if anno_type == "basic":
+    for line in f:
+        eline = line.strip()
+        line_list = eline.split('\t')
+        if len(line_list) == 1400:
+            final_list.append(line_list)
+        else:
+            continue
+
 f.close()
 
 final_form = pd.DataFrame(final_list).iloc[1:,:]
@@ -25,9 +37,9 @@ final_form = pd.DataFrame(final_list).iloc[1:,:]
 
 information = np.array(final_form.iloc[:,0:7],dtype=str)
 label = np.array(final_form.iloc[:,6],dtype=str)
-training = np.array(final_form.iloc[:,7:2431],dtype='float32')
+training = np.array(final_form.iloc[:,7:],dtype='float32')
 
-feature_list = np.loadtxt('feature_list_689.txt')
+feature_list = np.loadtxt('feature_list_689_' + anno_type + '.txt')
 
 feature_list = feature_list.astype(int)
 feature_list_1 = feature_list -1
@@ -40,7 +52,7 @@ training_data_out.create_dataset('information_tensor',data=information)
 training_data_out.create_dataset('label_tensor',data=label)
 training_data_out.close()
 
-feature_list = np.loadtxt('feature_list_1190.txt')
+feature_list = np.loadtxt('feature_list_1190_' + anno_type + '.txt')
 
 feature_list = feature_list.astype(int)
 feature_list_1 = feature_list -1

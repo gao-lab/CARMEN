@@ -12,6 +12,7 @@ start = time.clock()
 infilename = sys.argv[1]
 outdir = sys.argv[2]
 vcf_version = sys.argv[3]
+anno_version = sys.argv[4]
 job_id = infilename.split("/")[-1].split(".")[0]
 python_path = os.path.abspath('Tools/') + "/anaconda2/bin/python " 
 R_path = os.path.abspath('Tools/') + "/anaconda2/bin/Rscript "
@@ -25,7 +26,7 @@ if infilename.endswith('vcf'):
         tempdir = mkdtemp()
         
         check_call(["sed 's/chr//g' " + infilename + " | sed 's/^/chr/g' | sort -k1,1 -k2n > " + tempdir + '/infile.tmp.vcf'],shell=True)
-        check_call([R_path + "01_check_format.R " + tempdir+"/infile.tmp.vcf "+ tempdir + ' ' + vcf_version],shell=True)
+        check_call([R_path + "01_check_format_nofilter.R " + tempdir+"/infile.tmp.vcf "+ tempdir + ' ' + vcf_version],shell=True)
 
         print "Successfully copied input vcf file to working directory " + tempdir
 #===========================GRCh38 sequence orientated annotation =============== 
@@ -43,7 +44,7 @@ if infilename.endswith('vcf'):
         Get annotations with sequence orientated features
         '''
         os.chdir("./DeepOcean_web/")
-        check_call(["bash run_predict.sh " + tempdir + "/infile.hg38.vcf.merged.txt " + job_id + " " + python_path],shell=True)
+        check_call(["bash run_predict.sh " + tempdir + "/infile.hg38.vcf.merged.txt " + job_id + " " + python_path + " " + anno_version],shell=True)
         check_call(["mv ./output/" + job_id + "/infile.log.foldchange " + tempdir + "/infile.log.foldchange"],shell=True)
         call(['rm',"./output/" + job_id,'-r'])
         
@@ -85,7 +86,7 @@ if infilename.endswith('vcf'):
 
         check_call(["paste -d '\t' hg19_pos.txt infile.log.foldchange infile.hg19.wt200_PC_features.txt infile.hg19.wt200_OH_features.txt infile.conservation.title.txt | sed 's/# //g'  > infile.annotation.txt"],shell=True)
         os.chdir(precent_dir)
-        check_call([python_path + "09_merge_all_features.py " + tempdir + "/infile.annotation.txt " + tempdir + "/infile.annotation.689.hdf5 " + tempdir + "/infile.annotation.1190.hdf5"], shell=True)
+        check_call([python_path + "09_merge_all_features.py " + tempdir + "/infile.annotation.txt " + tempdir + "/infile.annotation.689.hdf5 " + tempdir + "/infile.annotation.1190.hdf5" + " " + anno_version], shell=True)
         check_call([python_path + "10_pinpoint_emVar.py " + tempdir + "/infile.annotation.689.hdf5 " + tempdir + "/infile.annotation.1190.hdf5"],shell=True)
         check_call(["cp", tempdir + "/infile.annotation.txt" ,outdir ])
         check_call(["cp", tempdir + "/infile.annotation.CARMEN.predict.csv" ,outdir ])
